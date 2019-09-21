@@ -26,6 +26,9 @@ const void *vpd_find_keyword(const void *rec, size_t rec_sz,
 		uint8_t k2 = *(p++);
 		uint8_t sz = *(p++);
 
+		if (k1 == 0x23) // keywork #*, along with 2Byte lenth
+			p++;
+
 		if (k1 == kw[0] && k2 == kw[1]) {
 			if (kw_size)
 				*kw_size = sz;
